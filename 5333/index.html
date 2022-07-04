@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: teal;
+
+
+
+    }
+    #navbar{
+        display:flex;
+        justify-content:space-between;
+        border: 1px solid teal;
+
+
+
+
+    }
+    input{
+        display:block;
+        justify-content: center;
+        margin: 15px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 30px;
+        align-content: center;
+        border-radius: 15px;
+
+
+
+
+
+
+
+
+
+    }
+    #batch{
+        display: block;
+        margin: auto;
+        justify-content: center;
+        font-size: larger;
+        font-size: 30px;
+    
+        
+
+    }
+    #unit{
+
+        display: block;
+        margin: auto;
+        justify-content: center;
+        font-size: larger;
+        font-size: 30px;
+
+
+    }
+    a{
+        text-decoration: none;
+        font-size: 30px;
+        color: black;
+
+
+
+
+    }
+
+    @media all and (min-width: 451px) and (max-width: 750px) {
+        body {
+          background-color: yellow;
+        }
+        h1 {
+          font-size: 30px;
+          color: black;
+        }
+
+      }
+
+      /* small screens */
+      @media all and (min-width: 80px) and (max-width: 450px) {
+        body {
+          background-color: pink;
+        }
+        h1 {
+          font-size: 10px;
+          color: orange;
+        }
+        
+      }
+
+
+
+
+
+
+</style>
+<body>
+    <div id="navbar"></div>
+    <a href="dashboard.html">dashboard</a>
+    <form>
+        <input type="text" id="name"  placeholder="full name">
+        <input id="course" type="text" placeholder="course">
+        <select  id="unit">
+            <option value="UNIT-1"    >UNIT-1</option>
+            <option value="UNIT-2"    >UNIT-2</option>
+            <option value="UNIT-3"    >UNIT-3</option>
+            <option value="UNIT-4"   >UNIT-4</option>
+
+
+
+
+
+
+        </select>
+        <input type="text"id="image" placeholder="image">
+        <select id="batch">
+
+            <option value="FULL STACK">FULL STACK</option>
+            <option value="DATA SCIENCE">DATA SCIENCE</option>
+            <option value="MACHINE LEARNING">MACHINE LEARNING</option>
+            <option value="SQL">SQL</option>
+            <option value="NODE JS">NODE JS</option>
+
+
+
+
+
+
+
+
+        </select>
+
+        <input id="add" type="submit" value="submit">
+
+
+        
+        
+        
+        
+
+
+
+
+
+
+
+
+    </form>
+    
+</body>
+</html>
+<script>
+
+document.querySelector("form").addEventListener("submit",function d(){
+event.preventDefault()
+form=document.querySelector("form")
+a=form.name.value
+b=form.course.value;
+c=form.unit.value;
+s=form.image.value;
+e=form.batch.value;
+
+
+x1=new batch(a,b,c,s,e)
+console.log(x1)
+
+batch1=JSON.parse(localStorage.getItem("students1")) || []
+
+batch1.push(x1)
+
+localStorage.setItem("students1",JSON.stringify(batch1))
+obj={}
+
+ batch1=JSON.parse(localStorage.getItem("students1")) || []   
+for(var i=0;i<batch1.length;i++)
+{
+    if(obj[batch1[i].batch]==undefined){
+
+
+        obj[batch1[i].batch]=1
+
+
+    }
+    else{
+
+
+        obj[batch1[i].batch]++
+
+
+    }
+
+   
+
+
+}
+navbar=document.getElementById("navbar")
+    navbar.innerHTML=null
+for(var z in obj){
+   
+
+var title=document.createElement("h2");
+title.textContent=z;
+var title1=document.createElement("h2");
+title1.textContent=obj[z];
+
+navbar.append(title,title1);
+
+
+
+}
+
+
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+function batch(a,b,c,s,e){
+
+this.name=a;
+this.course=b;
+this.unit=c;
+this.image=s;
+this.batch=e;
+
+
+
+
+}
+
+
+
+
+
+
+</script>

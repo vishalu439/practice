@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #navbar{
+            display:flex;
+            justify-content: space-between;
+
+
+
+
+            
+        }
+        #container{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: repeat(auto,auto);
+            border: 10 px solid red;
+            
+
+
+
+
+        }
+        img{
+            width:30%;
+            
+
+        }
+        #container>div{
+            margin: auto;
+            
+
+
+
+        }
+        p1{
+            display:block;
+            font-size: larger;
+
+
+
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <a href="bucket.html">bucket</a>
+        <a href="bucket.html">product</a>
+        <a href="bucket.html">login</a>
+        <a href="bucket.html">sign up</a>
+        <h3 id="count"></h3>
+
+    </div>
+    <div id="container"></div>
+    
+</body>
+</html>
+<script>
+    let url=`https://masai-mock-api.herokuapp.com/coffee/menu`
+count=0
+async function k(){
+
+    res=await fetch(url)
+    data=await res.json()
+
+    console.log(data)
+
+  append(data.menu.data)
+
+
+}
+
+function append(x){
+
+s=x.forEach((el)=>{
+
+container=document.getElementById("container")
+div=document.createElement("div")
+image=document.createElement("img")
+image.src=el.image
+p1=document.createElement("p1")
+p1.innerText=el.title
+p2=document.createElement("p1")
+p2.innerText=el.price
+button=document.createElement("button")
+button.innerText="add to bucket"
+button.addEventListener("click",function(){
+    x=document.getElementById("count")
+    navbar=document.getElementById("navbar")
+    x.innerHTML==null;
+    
+    count++
+    x.innerHTML=count
+    navbar.append(x)
+
+    products=JSON.parse(localStorage.getItem("bucket")) || []
+    products.push(el)
+    localStorage.setItem('bucket',JSON.stringify(products))
+
+
+
+
+})
+
+
+
+
+div.append(image,p1,p2,button)
+container.append(div)
+
+
+
+})
+
+
+
+
+}
+
+
+
+
+
+
+
+
+k()
+
+
+
+
+</script>

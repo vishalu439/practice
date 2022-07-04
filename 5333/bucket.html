@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+ #container{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: repeat(auto,auto);
+            border: 10 px solid red;
+            
+
+
+
+
+        }
+        img{
+            width:30%;
+            
+
+        }
+        #container>div{
+            margin: auto;
+            
+
+
+
+        }
+        p1{
+            display:block;
+            font-size: larger;
+
+
+
+        }
+        #navbar{
+            display:flex;
+            justify-content: space-between;
+
+
+
+
+            
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <a href="bucket.html">bucket</a>
+        <a href="bucket.html">product</a>
+        <a href="bucket.html">login</a>
+        <a href="checkout.html">check out</a>
+        <div id="xml">
+            <h3 id="total_amount"></h3>
+        </div>
+        
+    </div>
+    <div id="container"></div>
+    
+</body>
+</html>
+<script>
+ //products=JSON.parse(localStorage.getItem("bucket")) || []
+navbar=document.getElementById("navbar")
+ function append(){
+    
+    amount=document.getElementById("total_amount")
+    x=0
+
+    products=JSON.parse(localStorage.getItem("bucket")) || []
+    container.innerHTML=null
+    container=document.getElementById("container")
+s=products.forEach((el,i,array)=>{
+
+
+x+=el.price
+div=document.createElement("div")
+image=document.createElement("img")
+image.src=el.image
+p1=document.createElement("p1")
+p1.innerText=el.title
+p2=document.createElement("p1")
+p2.innerText=el.price
+button=document.createElement("button")
+button.innerText="remove"
+button.addEventListener("click",function(){
+   
+remove(i)
+
+})
+
+div.append(image,p1,p2,button)
+container.append(div)
+
+
+
+})
+d=document.getElementById("xml")
+d.innerHTML=null;
+amount.innerHTML==null
+navbar.innerText==null
+amount.innerHTML=x;
+navbar.append(x)
+
+}
+
+append()
+function remove(i){
+
+    z=JSON.parse(localStorage.getItem("bucket")) || []
+    a=z.filter((ele,index)=>{
+
+
+       
+     return index!==i
+
+
+    })
+    localStorage.setItem("bucket",JSON.stringify(a))
+  console.log(a)
+
+
+
+
+
+
+
+
+  append()
+
+}
+</script>
