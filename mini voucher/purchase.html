@@ -1,0 +1,111 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+        display:grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(auto,auto);
+        width:100%;
+        height:auto;
+        border: 1px solid black;
+
+
+
+
+    }
+    p1{
+        display:block
+
+
+
+
+    }
+
+    
+    </style>
+</head>
+
+<body>
+    
+    <div id="container"></div>
+    
+</body>
+</html>
+<script>
+
+ s=JSON.parse(localStorage.getItem('purchase'))||[]
+    const[{name,email,address,amount}]=s
+
+    function append(){
+    //navbar=document.getElementById("navbar");
+    //navbar.append(amount)
+    container=document.getElementById("container")
+
+
+s.forEach((el,i)=>{
+//console.log(el)
+const{name,image,price}=el
+
+div=document.createElement("div")
+img=document.createElement("img")
+img.src=image
+n=document.createElement("p1")
+n.innerText=name
+o=document.createElement("p1")
+o.innerText=price
+button=document.createElement("button")
+button.innerText="add items"
+button.addEventListener("click",function(){
+
+z=JSON.parse(localStorage.getItem('purchase'))||[]
+if(price<=sum){
+    sum=sum-price;
+    wallet=document.getElementById('wallet')
+    wallet.innerHTML=null;
+    wallet.innerText=sum
+
+
+
+
+z.push(el)
+
+localStorage.setItem('purchase',JSON.stringify(z))
+
+
+}
+else{
+    alert("insufficient amount")
+
+
+}
+
+
+
+
+})
+div.append(img,n,o,button)
+container.append(div)
+
+
+
+
+
+
+
+})
+
+
+
+
+
+
+}
+
+append()
+
+
+</script>

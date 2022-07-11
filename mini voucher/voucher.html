@@ -1,0 +1,140 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #container{
+        display:grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(auto,auto);
+        width:100%;
+        height:auto;
+        border: 1px solid black;
+
+
+
+
+    }
+    p1{
+        display:block
+
+
+
+
+    }
+
+
+
+
+
+</style>
+<body>
+    <div id="navbar">
+        <h1 id="wallet"></h1>
+        <a href="purchase.html">purchasew</a>
+    </div>
+    <div id="container">
+
+
+
+
+
+
+    </div>
+    
+</body>
+</html>
+<script>
+    navbar=document.getElementById("navbar");
+    s=JSON.parse(localStorage.getItem('user'))||[]
+    const[{name,email,address,amount}]=s
+    sum=amount;
+    wallet=document.getElementById('wallet')
+    wallet.innerText=amount
+   // navbar.append(amount)
+    //console.log(amount)
+let url=`https://masai-vouchers-api.herokuapp.com/api/vouchers`
+async function k(){
+
+res= await fetch(url)
+data=await res.json()
+console.log(data)
+//const[{vouchers}]=data
+//console.log(name)
+
+append(data)
+
+
+}
+function append([{vouchers}]){
+    navbar=document.getElementById("navbar");
+    //navbar.append(amount)
+    container=document.getElementById("container")
+
+
+vouchers.forEach((el,i)=>{
+//console.log(el)
+const{name,image,price}=el
+
+div=document.createElement("div")
+img=document.createElement("img")
+img.src=image
+n=document.createElement("p1")
+n.innerText=name
+o=document.createElement("p1")
+o.innerText=price
+button=document.createElement("button")
+button.innerText="add items"
+button.addEventListener("click",function(){
+
+z=JSON.parse(localStorage.getItem('purchase'))||[]
+if(price<=sum){
+    sum=sum-price;
+    wallet=document.getElementById('wallet')
+    wallet.innerHTML=null;
+    wallet.innerText=sum
+
+
+
+
+z.push(el)
+
+localStorage.setItem('purchase',JSON.stringify(z))
+
+
+}
+else{
+    alert("insufficient amount")
+
+
+}
+
+
+
+
+})
+div.append(img,n,o,button)
+container.append(div)
+
+
+
+
+
+
+
+})
+
+
+
+
+
+
+}
+
+k()
+
+
+</script>
